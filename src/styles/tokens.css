@@ -1,0 +1,76 @@
+:root {
+  /* ---- Palette: warm paper + deep ink, marigold accent, muted teal ---- */
+  --paper: oklch(97.5% 0.012 85);
+  --paper-raised: oklch(99% 0.008 85);
+  --paper-sunken: oklch(95% 0.015 84);
+  --ink: oklch(24% 0.02 60);
+  --ink-soft: oklch(42% 0.02 60);
+  --ink-faint: oklch(58% 0.015 65);
+  --line: oklch(88% 0.012 80);
+  --line-strong: oklch(80% 0.015 78);
+
+  --marigold: oklch(74% 0.18 68);
+  --marigold-deep: oklch(60% 0.18 52);
+  --marigold-wash: oklch(92% 0.09 78);
+  --teal: oklch(60% 0.12 195);
+  --teal-deep: oklch(47% 0.11 200);
+  --teal-wash: oklch(92% 0.06 195);
+
+  /* Extended colour set for a livelier surface */
+  --coral: oklch(66% 0.18 32);
+  --coral-wash: oklch(93% 0.07 34);
+  --plum: oklch(56% 0.16 322);
+  --plum-wash: oklch(93% 0.06 320);
+  --indigo: oklch(56% 0.15 272);
+  --indigo-wash: oklch(93% 0.055 274);
+  --grass: oklch(62% 0.15 150);
+  --grass-wash: oklch(93% 0.06 150);
+  --rose: oklch(63% 0.17 8);
+  --rose-wash: oklch(94% 0.06 10);
+  --sky: oklch(64% 0.13 230);
+  --sky-wash: oklch(93% 0.05 230);
+
+  --positive: oklch(58% 0.14 155);
+  --positive-wash: oklch(92% 0.07 155);
+  --negative: oklch(56% 0.19 25);
+  --negative-wash: oklch(93% 0.08 30);
+  --warn: oklch(72% 0.16 75);
+
+  /* Categorical chart ramp — vivid, evenly spaced around the wheel */
+  --c1: oklch(70% 0.18 62);
+  --c2: oklch(62% 0.14 200);
+  --c3: oklch(64% 0.17 28);
+  --c4: oklch(64% 0.15 150);
+  --c5: oklch(58% 0.16 305);
+  --c6: oklch(74% 0.15 95);
+  --c7: oklch(58% 0.14 262);
+  --c8: oklch(62% 0.17 12);
+  --c-other: oklch(76% 0.045 300); /* the long-tail "Other" slice — muted but not grey */
+
+  /* ---- Typography ---- */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Menlo', monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: clamp(1.75rem, 1.2rem + 2vw, 2.6rem);
+  --text-hero: clamp(2.4rem, 1.4rem + 4vw, 4rem);
+
+  /* ---- Spacing / radius / motion ---- */
+  --space-page: clamp(1.25rem, 0.5rem + 3vw, 3rem);
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 20px;
+
+  --shadow-sm: 0 1px 2px oklch(30% 0.02 60 / 0.06), 0 1px 3px oklch(30% 0.02 60 / 0.05);
+  --shadow: 0 2px 8px oklch(30% 0.02 60 / 0.06), 0 8px 24px oklch(30% 0.02 60 / 0.06);
+  --shadow-lg: 0 12px 40px oklch(30% 0.02 60 / 0.12);
+
+  --duration-fast: 140ms;
+  --duration: 260ms;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
