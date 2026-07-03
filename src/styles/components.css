@@ -528,6 +528,156 @@
 .vcs-num { font-size: 0.72rem; font-weight: 600; order: 2; }
 
 /* =========================================================================
+   Gantt / Timeline
+   ========================================================================= */
+.gantt {
+  --gantt-label: 200px;
+  font-size: 0.8rem;
+}
+.gantt-axis,
+.gantt-row {
+  display: grid;
+  grid-template-columns: var(--gantt-label) 1fr;
+  align-items: center;
+}
+.gantt-axis { margin-bottom: 0.5rem; }
+.gantt-axis-track {
+  position: relative;
+  height: 18px;
+  border-bottom: 1px solid var(--line-strong);
+}
+.gantt-tick {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+.gantt-tick.gantt-today { transform: translateX(-100%); color: var(--marigold-deep); }
+
+.gantt-body { position: relative; }
+.gantt-grid-layer {
+  position: absolute;
+  left: var(--gantt-label);
+  right: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+.gantt-grid {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+}
+
+.gantt-row {
+  min-height: 26px;
+  border-radius: 6px;
+}
+.gantt-row:hover { background: oklch(97% 0.02 78 / 0.5); }
+.gantt-row.indent .gantt-label { padding-left: 1rem; }
+.gantt-label {
+  padding-right: 0.75rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.gl-name { font-weight: 600; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gl-sub { font-size: 0.68rem; color: var(--ink-faint); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.gantt-track { position: relative; height: 18px; }
+.gantt-bar {
+  position: absolute;
+  top: 2px;
+  height: 14px;
+  border-radius: 4px;
+  min-width: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 4px;
+  box-shadow: inset 0 0 0 1px oklch(100% 0 0 / 0.15);
+  transition: filter var(--duration-fast);
+}
+.gantt-bar:hover { filter: brightness(1.08); }
+.gantt-bar-cap {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: oklch(100% 0 0 / 0.92);
+  white-space: nowrap;
+}
+.bucket-fresh { background: linear-gradient(90deg, var(--grass), oklch(55% 0.13 155)); }
+.bucket-aging { background: linear-gradient(90deg, var(--warn), var(--marigold-deep)); }
+.bucket-dead { background: linear-gradient(90deg, var(--coral), var(--negative)); }
+
+.gantt-foot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.4rem;
+  padding-left: var(--gantt-label);
+  font-size: 0.68rem;
+  color: var(--ink-faint);
+}
+.gantt-foot .gantt-range:first-child { margin-left: -0.5rem; }
+
+.age-legend { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.1rem; }
+.age-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  font-size: 0.8rem;
+}
+.age-swatch { width: 12px; height: 12px; border-radius: 4px; }
+.age-chip-label { color: var(--ink-soft); }
+.age-chip-count { font-weight: 700; color: var(--ink); }
+.age-chip-val { color: var(--ink-faint); font-size: 0.72rem; }
+
+@media (max-width: 720px) {
+  .gantt { --gantt-label: 120px; }
+}
+
+/* =========================================================================
+   Seasonality heatmap
+   ========================================================================= */
+.heatmap-wrap { overflow-x: auto; }
+.heatmap { border-collapse: separate; border-spacing: 3px; font-size: 0.75rem; }
+.heatmap th { font-weight: 600; }
+.hm-corner, .hm-label {
+  text-align: left;
+  position: sticky;
+  left: 0;
+  background: var(--paper-raised);
+  color: var(--ink);
+  padding-right: 0.6rem;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  z-index: 1;
+}
+.hm-corner { color: var(--ink-faint); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.hm-month { color: var(--ink-faint); font-size: 0.66rem; text-align: center; padding: 0 2px; }
+.hm-cell {
+  width: 58px;
+  min-width: 58px;
+  height: 30px;
+  border-radius: 5px;
+  text-align: center;
+  vertical-align: middle;
+  color: var(--ink);
+}
+.hm-val { font-size: 0.66rem; font-weight: 600; mix-blend-mode: luminosity; }
+
+/* =========================================================================
    Upload
    ========================================================================= */
 .uploader { margin-bottom: 1.75rem; }

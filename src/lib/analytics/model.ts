@@ -53,6 +53,54 @@ export interface Payables {
   aging: SupplierAge[];
 }
 
+// ---- Timeline / Gantt views ----
+export type AgeBucket = 'fresh' | 'aging' | 'dead';
+
+export interface BatchLot {
+  startIso: string;
+  ageDays: number;
+  stock: number;
+  value: number;
+  supplier: string;
+}
+
+export interface AgingBar {
+  code: string;
+  name: string;
+  category: string;
+  startIso: string; // oldest still-held inward date
+  ageDays: number;
+  currentStock: number;
+  value: number;
+  bucket: AgeBucket;
+  lots: BatchLot[];
+}
+
+export interface SeasonRow {
+  label: string;
+  total: number;
+  cells: number[]; // aligned to Seasonality.months
+}
+
+export interface Seasonality {
+  months: string[]; // 'yyyy-mm', chronological
+  rows: SeasonRow[];
+  max: number;
+}
+
+export interface TimelineData {
+  hasBatch: boolean;
+  hasLedger: boolean;
+  ledgerPartial: boolean;
+  todayIso: string;
+  axisStartIso: string | null;
+  aging: AgingBar[]; // worst offenders, oldest first
+  agingTotal: number; // total items with stock-on-shelf (before the display cap)
+  bucketCounts: { fresh: number; aging: number; dead: number };
+  bucketValue: { fresh: number; aging: number; dead: number };
+  seasonality: Seasonality | null;
+}
+
 export type TakeawayTone = 'good' | 'watch' | 'bad' | 'info';
 export interface Takeaway {
   icon: string;
@@ -100,6 +148,9 @@ export interface Dashboard {
 
   // Payables
   payables: Payables | null;
+
+  // Timeline / Gantt
+  timeline: TimelineData;
 
   // Takeaways + flags
   takeaways: TakeawayGroup[];

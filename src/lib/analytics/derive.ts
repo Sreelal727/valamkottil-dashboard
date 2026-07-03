@@ -4,6 +4,7 @@ import { monthLabel } from '../format';
 import type { BestSeller, CategoryGPRow, Dashboard, ReorderRow, Slice, VariantGroup } from './model';
 import { buildPayables } from './payables';
 import { buildTakeaways } from './takeaways';
+import { buildTimeline } from './timeline';
 
 const REORDER_MONTHS_COVER = 1.0; // < 1 month of cover => reorder soon
 const norm = (s: string) => s.trim().toUpperCase();
@@ -95,6 +96,9 @@ export function derive(files: ParsedFile[]): Dashboard {
   // ---- Payables ----
   const payables = creditors?.creditors ? buildPayables(creditors.creditors, batch?.stockBatches ?? []) : null;
 
+  // ---- Timeline / Gantt ----
+  const timeline = buildTimeline(batch?.stockBatches ?? [], ledgerItems, asOfDate, ledgerPartial);
+
   // ---- Flags ----
   // Headline count is actionable issues only (negative stock, missing supplier,
   // missing price). Low-severity noise like "no rack" — which every item trips
@@ -109,6 +113,7 @@ export function derive(files: ParsedFile[]): Dashboard {
     deadStockValue, deadStockCount, flagCount,
     ledgerPartial, monthlyTrend, salesByCategory, salesByCategorySource, categoryGP, bestSellers, cashVsCredit,
     deadStock, deadStockCoverageNote, reorder, variants, payables,
+    timeline,
     takeaways: [], flags,
   };
   dashboard.takeaways = buildTakeaways(dashboard, { headline, deadStock });

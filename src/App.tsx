@@ -6,6 +6,7 @@ import { ChartsPage } from './pages/ChartsPage';
 import { TakeawaysPage } from './pages/TakeawaysPage';
 import { PayablesPage } from './pages/PayablesPage';
 import { ProductsPage } from './pages/ProductsPage';
+import { TimelinePage } from './pages/TimelinePage';
 import { UploadPage } from './pages/UploadPage';
 import { useDataStore } from './lib/store/useDataStore';
 
@@ -19,6 +20,7 @@ const router = createHashRouter([
       { path: 'takeaways', element: <TakeawaysPage /> },
       { path: 'payables', element: <PayablesPage /> },
       { path: 'products', element: <ProductsPage /> },
+      { path: 'timeline', element: <TimelinePage /> },
       { path: 'upload', element: <UploadPage /> },
     ],
   },

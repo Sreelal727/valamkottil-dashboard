@@ -9,6 +9,7 @@ const NAV = [
   { to: '/takeaways', label: 'Key Takeaways', icon: '✦' },
   { to: '/payables', label: 'Supplier Payables', icon: '▤' },
   { to: '/products', label: 'Product & Stock', icon: '▦' },
+  { to: '/timeline', label: 'Stock Timeline', icon: '▭' },
 ];
 
 export function AppShell() {
